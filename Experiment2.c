@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX 3
 
 int rear = -1;
 int front = -1;
 
-void enQueue(int q[], int item) {
+void enQueue(int q[], int item,int MAX) {
     if (rear == MAX - 1) {
         printf("The queue is full\n");
         return;
@@ -19,7 +18,7 @@ void enQueue(int q[], int item) {
     }
 }
 
-void deQueue(int q[]) {
+void deQueue(int q[],int MAX) {
     if (front == -1 || front > MAX) {
         printf("The queue is empty\n");
         return;
@@ -45,6 +44,9 @@ void display(int q[]) {
 }
 
 int main() {
+    int MAX;
+    printf("Enter the size of the Queue:");
+    scanf("%d",&MAX);
     int queue[MAX], n;
 
     while (1) {
@@ -61,12 +63,12 @@ int main() {
                 printf("Enter the item to push: ");
                 int item;
                 scanf("%d", &item);
-                enQueue(queue, item);
+                enQueue(queue, item,MAX);
                 display(queue);
                 break;
             }
             case 2:
-                deQueue(queue);
+                deQueue(queue,MAX);
                 display(queue);
                 break;
             case 3:
@@ -82,4 +84,3 @@ int main() {
 
     return 0;
 }
-
