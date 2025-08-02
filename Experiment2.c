@@ -1,75 +1,85 @@
 #include <stdio.h>
+#include <stdlib.h>
+#define MAX 3
+
+int rear = -1;
+int front = -1;
+
+void enQueue(int q[], int item) {
+    if (rear == MAX - 1) {
+        printf("The queue is full\n");
+        return;
+    }
+
+    rear++;
+    q[rear] = item;
+
+    if (front == -1) {
+        front = 0;
+    }
+}
+
+void deQueue(int q[]) {
+    if (front == -1 || front > MAX) {
+        printf("The queue is empty\n");
+        return;
+    }
+
+    printf("The element deleted is %d\n", q[front]);
+    front++;
+}
+
+void display(int q[]) {
+    printf("\n");
+
+    if (rear == -1 || front > rear) {
+        printf("Queue is Empty\n");
+    } else {
+        printf("The queue is: ");
+        for (int i = front; i <= rear; i++) {
+            printf("%d ", q[i]);
+        }
+    }
+
+    printf("\n");
+}
 
 int main() {
-    int n = 5; 
-    int queue[n];
-    int front = 0, rear = 0;
-    char ch;
-    int data;
+    int queue[MAX], n;
 
-    
-    void enqueue() {
-        printf("Enter number to enqueue: ");
-        scanf("%d", &data);
-        
-        if (rear == n) {
-            printf("Queue is full.\n");
-        } else {
-            queue[rear] = data;
-            rear = rear + 1;
-            printf("Queue: ");
-            for (int i = 0; i < rear; i++) {
-                printf("%d ", queue[i]);
-            }
-            printf("\n");
-        }
-    }
+    while (1) {
+        printf("Enter the operation required\n");
+        printf("=====================================\n");
+        printf("1.Enqueue\n2.Dequeue\n3.Display\n4.Exit\n");
+        printf("=====================================\n");
 
-    
-    void dequeue() {
-        if (front == rear) {
-            printf("Queue is empty.\n");
-        } else {
-      
-            printf("Dequeued: %d\n", queue[front]);
-            front = front + 1; 
-            printf("Queue after dequeue: ");
-            for (int i = front; i < rear; i++) {
-                printf("%d ", queue[i]);
-            }
-            printf("\n");
-        }
-    }
-   printf("The choices are:");
-   printf("\n1. Enqueue\n2. Dequeue\n3. Exit\n"); 
-    
-  while (1) {
-        printf("Enter your choice:");
-        int choice;
-        scanf("%d", &choice);
+        fflush(stdin);
+        scanf("%d", &n);
 
-        switch (choice) {
-            case 1:
-                enqueue();
+        switch (n) {
+            case 1: {
+                printf("Enter the item to push: ");
+                int item;
+                scanf("%d", &item);
+                enQueue(queue, item);
+                display(queue);
                 break;
+            }
             case 2:
-                dequeue();
+                deQueue(queue);
+                display(queue);
                 break;
             case 3:
-                printf("Exiting program...\n");
-                return 0;  
+                display(queue);
+                break;
+            case 4:
+                printf("\n========Program terminated========\n");
+                exit(0);
             default:
-                printf("Invalid choice! Please enter 1, 2, or 3.\n");
-        }
-        
-
-        printf("Do you want to continue (Y/N): ");
-        scanf(" %c", &ch);  
-
-        if (ch == 'N' || ch == 'n') {
-            printf("Exiting program...\n");
-            break;  
+                printf("Invalid selection\n");
         }
     }
+
     return 0;
 }
+
