@@ -61,14 +61,12 @@ int main() {
 
     int queue[MAX];
     int n;
+    printf("\nEnter the operation required\n");
 
     while (1) {
-        printf("\nEnter the operation required\n");
-        printf("=====================================\n");
-        printf("1.Enqueue\n2.Dequeue\n3.Display\n4.Exit\n");
-        printf("=====================================\n");
+        printf("1.Enqueue\n2.Dequeue\n3.Exit\n");
 
-        printf("Choice: ");
+        printf("Enter the choice: ");
         scanf("%d", &n);
 
         switch (n) {
@@ -85,9 +83,6 @@ int main() {
                 display(queue);
                 break;
             case 3:
-                display(queue);
-                break;
-            case 4:
                 printf("\n======== Program terminated ========\n");
                 exit(0);
             default:
