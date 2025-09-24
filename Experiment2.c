@@ -62,10 +62,8 @@ int main() {
     int queue[MAX];
     int n;
     printf("\nEnter the operation required\n");
-
+    printf("1.Enqueue\n2.Dequeue\n3.Exit\n");
     while (1) {
-        printf("1.Enqueue\n2.Dequeue\n3.Exit\n");
-
         printf("Enter the choice: ");
         scanf("%d", &n);
 
